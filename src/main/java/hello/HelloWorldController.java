@@ -34,13 +34,8 @@ public class HelloWorldController {
 
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody WebhookResponse webhook(@RequestBody String obj){
-        
-        String speech = null;
+     	String speech = null;
 try{
-        
-        
-
-        
 	    	JSONObject objS = new JSONObject(obj);
 //          System.out.println(objS.get("id"));
           JSONObject result = objS.getJSONObject("result");
@@ -73,8 +68,7 @@ try{
         			System.out.println(conn.getResponseCode());
         			if (conn.getResponseCode() != 200) {
         				
-        				throw new RuntimeException("Failed : HTTP error code : "
-        						+ conn.getResponseCode());
+        				speech = "code "+conn.getResponseCode();
            			
         			}
         			
@@ -120,13 +114,9 @@ try{
     				 System.out.println(speech);
         			conn.disconnect();
 
-        		  } catch (MalformedURLException e) {
+        		  }catch (IOException e) {
 
-        			e.printStackTrace();
-
-        		  } catch (IOException e) {
-
-        			e.printStackTrace();
+        			  speech = "middle ctach"+e.getMessage();
 
         		  }  
         	  
@@ -134,7 +124,9 @@ try{
         	  
          
           }
-}catch(Exception e){}
+}catch(Exception e){
+	speech = "last ctach"+e.getMessage();
+}
 
 
 	        return new WebhookResponse( speech, speech);
