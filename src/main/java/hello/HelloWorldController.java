@@ -44,7 +44,13 @@ try{
           JSONObject parameter = result.getJSONObject("parameters");
           String geoCity = parameter.getString("geo-city");
           System.out.println("geoCity ::: " + geoCity);
-          
+          if(!geoCity.equals("")){
+            System.out.println("geoCity ::: " + geoCity);
+            }else{
+                System.out.println("else");
+                geoCity = parameter.getJSONObject("address").getString("city");
+                System.out.println("geoCity elsde ::: " + geoCity);
+            } 
          
             
            String Service_url = "http://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\""+geoCity+"\")&format=json";
