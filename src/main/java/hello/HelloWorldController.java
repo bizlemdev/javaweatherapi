@@ -131,7 +131,7 @@ try{
          
           }
 }catch(Exception e){
-	speech = "last ctach"+e.getMessage();
+	//speech = "last ctach"+e.getMessage();
 }
 
 
