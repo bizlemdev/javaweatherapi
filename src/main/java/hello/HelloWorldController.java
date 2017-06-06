@@ -122,7 +122,7 @@ try{
 
         		  }catch (IOException e) {
 
-        			  speech = "middle ctach"+e.getMessage();
+        			  
 
         		  }  
         	  
